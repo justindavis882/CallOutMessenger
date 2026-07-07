@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Out Messenger</title>
+    <style>
+        /* Basic reset and styling for visibility */
+        body { font-family: sans-serif; padding: 20px; }
+        .hidden { display: none !important; }
+        #chat-window { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+        .message { margin-bottom: 8px; padding: 5px; background: #f1f1f1; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-container">
+        <h2>Welcome to Call Out</h2>
+        <input type="email" id="email" placeholder="Email" required><br><br>
+        <input type="password" id="password" placeholder="Password" required><br><br>
+        <input type="text" id="username" placeholder="Username (For Sign Up Only)"><br><br>
+        
+        <button id="signup-btn">Sign Up</button>
+        <button id="login-btn">Log In</button>
+        <p id="auth-error" style="color: red;"></p>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <h2>Call Out Messenger</h2>
+        <button id="logout-btn">Log Out</button>
+        <hr>
+        
+        <h3>Global Chat</h3>
+        <div id="chat-window"></div>
+        
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
