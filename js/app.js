@@ -13,32 +13,47 @@ window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON
  */
 window.checkSession = async function() {
     const authContainer = document.getElementById('auth-container');
+    const setupContainer = document.getElementById('profile-setup-container');
     const appContainer = document.getElementById('app-container');
     
-    // Safety check in case elements haven't loaded yet
-    if (!authContainer || !appContainer) return;
+    if (!authContainer || !appContainer || !setupContainer) return;
 
-    // Ask Supabase if a user is currently logged in
+    // 1. Check if user has an active Auth session
     const { data: { session }, error } = await window.supabaseClient.auth.getSession();
     
     if (error) {
-        console.error("Error checking session:", error.message);
+        console.error("Session error:", error.message);
         return;
     }
 
     if (session) {
-        // User is logged in: Hide login form, show the messenger
-        authContainer.classList.add('hidden');
-        appContainer.classList.remove('hidden');
-        
-        // If the chat system initialization function exists (from chat.js), run it
-        if (typeof initChatSystem === 'function') {
-            initChatSystem();
+        // 2. User is authenticated. Now, do they have a profile?
+        const { data: profile } = await window.supabaseClient
+            .from('profiles')
+            .select('username')
+            .eq('id', session.user.id)
+            .single();
+
+        if (!profile) {
+            // State: Logged In, but needs to pick a username
+            authContainer.classList.add('hidden');
+            appContainer.classList.add('hidden');
+            setupContainer.classList.remove('hidden');
+        } else {
+            // State: Logged In, profile exists. Go to chat!
+            authContainer.classList.add('hidden');
+            setupContainer.classList.add('hidden');
+            appContainer.classList.remove('hidden');
+            
+            if (typeof initChatSystem === 'function') {
+                initChatSystem();
+            }
         }
     } else {
-        // User is logged out: Show login form, hide the messenger
-        authContainer.classList.remove('hidden');
+        // State: Logged Out
+        setupContainer.classList.add('hidden');
         appContainer.classList.add('hidden');
+        authContainer.classList.remove('hidden');
     }
 };
 
