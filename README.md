@@ -1,3 +1,6 @@
+v0.0.3
+.: Fixed app.js auth
+
 v0.0.2a
 .: Forgot to link styles.
 
@@ -7,4 +10,4 @@ v0.0.2
 .: Created styles.
 
 v0.0.1
-Created repo and established pages.
+.: Created repo and established pages.
