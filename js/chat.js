@@ -87,17 +87,3 @@ async function initChatSystem() {
     await loadMessages();
     subscribeToMessages();
 }
-
-// Overwrite the checkSession function from app.js to initialize chat
-const originalCheckSession = window.checkSession;
-window.checkSession = async function() {
-    const { data: { session } } = await supabaseClient.auth.getSession();
-    if (session) {
-        authContainer.classList.add('hidden');
-        appContainer.classList.remove('hidden');
-        initChatSystem();
-    } else {
-        authContainer.classList.remove('hidden');
-        appContainer.classList.add('hidden');
-    }
-}
