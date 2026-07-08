@@ -2,6 +2,10 @@
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
     --text-color: #ffffff;
+    
+    /* Dynamic Theme Colors */
+    --theme-base: #667eea;
+    --theme-accent: #764ba2;
 }
 
 body {
@@ -12,13 +16,14 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Segoe UI', sans-serif;
-    /* Beautiful gradient background */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Uses the variables so JS can change them instantly */
+    background: linear-gradient(135deg, var(--theme-base) 0%, var(--theme-accent) 100%);
     color: var(--text-color);
+    transition: background 0.5s ease; /* Smooth color transition */
 }
 
 /* The Glass Card Effect */
-#auth-container, #profile-setup-container, #app-container {
+#auth-container, #profile-setup-container, #app-container, #profile-container {
     background: var(--glass-bg);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px); /* Safari support */
@@ -125,4 +130,24 @@ button:hover {
 .contact-card.active {
     background: #ffffff;
     color: #764ba2;
+}
+
+/* Avatar and Profile UI */
+.avatar-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    display: block;
+    border: 2px solid var(--glass-border);
+}
+
+#theme-picker {
+    height: 40px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
 }

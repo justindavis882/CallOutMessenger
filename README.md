@@ -3,6 +3,9 @@ Your next messenging platform! Chat with anyone in the world instantly.
 
 # Version Log
 
+## v0.0.7
+* Added theme color chooser.
+
 ## v0.0.6
 * PWA installtion added.
 * Notiications and browserbased notifications.

@@ -32,6 +32,7 @@
         <div id="sidebar">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h3>Messages</h3>
+                <button id="open-profile-btn" style="width: auto; padding: 5px 10px; margin: 0; margin-right: 5px;">Profile</button>
                 <button id="logout-btn" style="width: auto; padding: 5px 10px; margin: 0;">Log Out</button>
             </div>
             <hr>
@@ -55,6 +56,22 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="profile-container" class="hidden">
+        <h2 style="text-align: center;">Edit Profile</h2>
+        
+        <img id="avatar-preview" class="avatar-preview" src="https://via.placeholder.com/150?text=Avatar" alt="Avatar">
+        <input type="file" id="avatar-upload" accept="image/png, image/jpeg, image/webp">
+        
+        <label for="theme-picker" style="display: block; margin-top: 15px;">App Theme Color:</label>
+        <input type="color" id="theme-picker" value="#764ba2">
+        
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button id="save-profile-btn">Save Changes</button>
+            <button id="close-profile-btn" style="background: rgba(255,255,255,0.2); color: white;">Cancel</button>
+        </div>
+        <p id="profile-message" style="text-align: center; margin-top: 10px;"></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

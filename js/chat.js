@@ -21,6 +21,11 @@ window.initChatSystem = async function() {
     const { data } = await window.supabaseClient.from('profiles').select('*').eq('id', session.user.id).single();
     currentUserProfile = data;
     
+    // Apply user's saved theme color
+    if (currentUserProfile.theme_color) {
+        document.documentElement.style.setProperty('--theme-accent', currentUserProfile.theme_color);
+    }
+    
     // NEW: Ask for notification permission
     if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
         Notification.requestPermission();
