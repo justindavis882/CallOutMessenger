@@ -3,6 +3,10 @@ Your next messenging platform! Chat with anyone in the world instantly.
 
 # Version Log
 
+## v0.0.5
+* Created realtime refresh for chats and messages.
+* Added a Recent Contacts section.
+
 ## v0.0.4
 * Created direct messaging. 
 
