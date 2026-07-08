@@ -23,7 +23,7 @@ body {
 }
 
 /* The Glass Card Effect */
-#auth-container, #profile-setup-container, #app-container, #profile-container {
+#auth-container, #profile-setup-container, #app-container, #profile-container, #lp-hero {
     background: var(--glass-bg);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px); /* Safari support */
