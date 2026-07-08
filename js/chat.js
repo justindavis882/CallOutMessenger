@@ -166,20 +166,19 @@ function subscribeToActiveChat() {
         .on(
             'postgres_changes',
             { event: 'INSERT', schema: 'public', table: 'messages', filter: `chat_id=eq.${activeChatId}` },
-            async (payload) => {
-                const { data: sender } = await window.supabaseClient.from('profiles').select('username').eq('id', payload.new.sender_id).single();
-                
-                // Display the message in the UI
-                displayMessage(payload.new.content, sender.username, sender.avatar_url);
+            // Inside subscribeToActiveChat()
+async (payload) => {
+    // 1. Grab both username AND avatar_url
+    const { data: sender } = await window.supabaseClient
+        .from('profiles')
+        .select('username, avatar_url') 
+        .eq('id', payload.new.sender_id)
+        .single();
+    
+    // 2. Pass the avatar_url as the third argument
+    displayMessage(payload.new.content, sender.username, sender.avatar_url);
+}
 
-                // NEW: Send an OS notification if the user is looking at another tab/app
-                if (document.hidden && Notification.permission === "granted") {
-                    new Notification(`New message from ${sender.username}`, {
-                        body: payload.new.content,
-                        // Optional: add a path to an icon image here later
-                        // icon: '/assets/icon.png' 
-                    });
-                }
             }
         )
         .subscribe();
