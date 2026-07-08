@@ -1,11 +1,13 @@
-const CACHE_NAME = 'call-out-cache-v1';
+const CACHE_NAME = 'call-out-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
   './styles.css',
   './js/app.js',
   './js/auth.js',
-  './js/chat.js'
+  './js/chat.js',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 // Install the service worker and cache core files
