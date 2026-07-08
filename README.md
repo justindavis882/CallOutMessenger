@@ -3,6 +3,9 @@ Your next messenging platform! Chat with anyone in the world instantly.
 
 # Version Log
 
+## v0.0.4
+* Created direct messaging. 
+
 ## v0.0.3
 * Fixed `app.js` authentication.
 

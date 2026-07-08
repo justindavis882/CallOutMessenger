@@ -27,15 +27,28 @@
     </div>
 
     <div id="app-container" class="hidden">
-        <h2>Call Out Messenger</h2>
-        <button id="logout-btn">Log Out</button>
-        <hr>
         
-        <h3>Global Chat</h3>
-        <div id="chat-window"></div>
-        
-        <input type="text" id="message-input" placeholder="Type a message...">
-        <button id="send-btn">Send</button>
+        <div id="sidebar">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3>Messages</h3>
+                <button id="logout-btn" style="width: auto; padding: 5px 10px; margin: 0;">Log Out</button>
+            </div>
+            <hr>
+            <input type="text" id="user-search" placeholder="Enter exact username...">
+            <button id="search-btn">Start Chat</button>
+            <p id="search-error" style="color: #ffcccc; font-size: 14px;"></p>
+        </div>
+
+        <div id="chat-area" class="hidden">
+            <h3 id="active-chat-name">Chat</h3>
+            <div id="chat-window"></div>
+            
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-btn" style="width: 80px;">Send</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -78,3 +78,31 @@ button:hover {
 }
 
 .hidden { display: none !important; }
+
+/* Expanded App Container for DMs */
+#app-container {
+    width: 800px; /* Much wider for the messenger layout */
+    display: flex !important; /* Forces flexbox when not hidden */
+    gap: 20px;
+    padding: 20px;
+}
+
+#app-container.hidden {
+    display: none !important;
+}
+
+#sidebar {
+    width: 35%;
+    border-right: 1px solid var(--glass-border);
+    padding-right: 20px;
+}
+
+#chat-area {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-area.hidden {
+    display: none;
+}
