@@ -21,7 +21,12 @@ window.initChatSystem = async function() {
     const { data } = await window.supabaseClient.from('profiles').select('*').eq('id', session.user.id).single();
     currentUserProfile = data;
     
-    await loadRecentContacts(); // NEW: Load contacts on login
+    // NEW: Ask for notification permission
+    if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+        Notification.requestPermission();
+    }
+    
+    await loadRecentContacts(); 
 }
 
 // 2. NEW: Fetch and display recent contacts
@@ -153,7 +158,18 @@ function subscribeToActiveChat() {
             { event: 'INSERT', schema: 'public', table: 'messages', filter: `chat_id=eq.${activeChatId}` },
             async (payload) => {
                 const { data: sender } = await window.supabaseClient.from('profiles').select('username').eq('id', payload.new.sender_id).single();
+                
+                // Display the message in the UI
                 displayMessage(payload.new.content, sender.username);
+
+                // NEW: Send an OS notification if the user is looking at another tab/app
+                if (document.hidden && Notification.permission === "granted") {
+                    new Notification(`New message from ${sender.username}`, {
+                        body: payload.new.content,
+                        // Optional: add a path to an icon image here later
+                        // icon: '/assets/icon.png' 
+                    });
+                }
             }
         )
         .subscribe();

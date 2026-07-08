@@ -1,0 +1,21 @@
+{
+  "name": "Call Out Messenger",
+  "short_name": "Call Out",
+  "description": "A real-time messaging application.",
+  "start_url": "/call-out-messenger/", 
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#764ba2",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192/764ba2/FFFFFF?text=CO",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512/764ba2/FFFFFF?text=CO",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
