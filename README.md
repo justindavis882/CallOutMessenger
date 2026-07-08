@@ -1,13 +1,18 @@
-v0.0.3
-.: Fixed app.js auth
+# Call Out Messenger
+Your next messenging platform! Chat with anyone in the world instantly. 
 
-v0.0.2a
-.: Forgot to link styles.
+# Version Log
 
-v0.0.2
-.: Connected Auth system.
-.: Created login UI.
-.: Created styles.
+## v0.0.3
+* Fixed `app.js` authentication.
 
-v0.0.1
-.: Created repo and established pages.
+## v0.0.2a
+* Fixed broken layout by linking styles.
+
+## v0.0.2
+* Connected the central authentication system.
+* Created the login user interface.
+* Established baseline application styles.
+
+## v0.0.1
+* Created the repository and established initial pages.
