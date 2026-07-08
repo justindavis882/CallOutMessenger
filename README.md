@@ -1,3 +1,5 @@
+![Project Logo](./icon-512.png)
+
 # Call Out Messenger
 Your next messenging platform! Chat with anyone in the world instantly. 
 
