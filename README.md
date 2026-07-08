@@ -3,6 +3,9 @@ Your next messenging platform! Chat with anyone in the world instantly.
 
 # Version Log
 
+## v0.0.8
+* Added Account Avatars!
+
 ## v0.0.7
 * Added theme color chooser.
 

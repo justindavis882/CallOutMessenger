@@ -127,15 +127,20 @@ async function openDirectMessage(targetUser, knownChatId) {
 }
 
 // 5. Render a message to the screen
-function displayMessage(content, username) {
+function displayMessage(content, username, avatarUrl) {
     const msgDiv = document.createElement('div');
     msgDiv.className = 'message';
+    
+    // Provide a fallback image if they haven't uploaded one
+    const safeAvatar = avatarUrl || 'https://via.placeholder.com/30?text=U';
+
     if (username === currentUserProfile.username) {
-        msgDiv.innerHTML = `<span style="color: #a8c0ff;"><strong>You:</strong></span> ${content}`;
+        msgDiv.innerHTML = `${content} <span style="color: #a8c0ff;"><strong> :You</strong></span> <img src="${safeAvatar}" class="chat-avatar" style="margin-left: 8px; margin-right: 0;">`;
         msgDiv.style.textAlign = "right";
     } else {
-        msgDiv.innerHTML = `<strong>${username}:</strong> ${content}`;
+        msgDiv.innerHTML = `<img src="${safeAvatar}" class="chat-avatar"> <strong>${username}:</strong> ${content}`;
     }
+
     chatWindow.appendChild(msgDiv);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }
@@ -145,7 +150,7 @@ async function loadMessages() {
     chatWindow.innerHTML = ''; 
     const { data: messages } = await window.supabaseClient
         .from('messages')
-        .select(`content, profiles(username)`)
+        .select(`content, profiles(username, avatar_url)`)
         .eq('chat_id', activeChatId)
         .order('created_at', { ascending: true });
 
@@ -165,7 +170,7 @@ function subscribeToActiveChat() {
                 const { data: sender } = await window.supabaseClient.from('profiles').select('username').eq('id', payload.new.sender_id).single();
                 
                 // Display the message in the UI
-                displayMessage(payload.new.content, sender.username);
+                displayMessage(payload.new.content, sender.username, sender.avatar_url);
 
                 // NEW: Send an OS notification if the user is looking at another tab/app
                 if (document.hidden && Notification.permission === "granted") {
