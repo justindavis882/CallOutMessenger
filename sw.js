@@ -1,4 +1,4 @@
-const CACHE_NAME = 'call-out-cache-v2';
+const CACHE_NAME = 'call-out-cache-v3';
 const urlsToCache = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const urlsToCache = [
   './js/app.js',
   './js/auth.js',
   './js/chat.js',
+  './js/profile.js',
   './icon-192.png',
   './icon-512.png'
 ];
